@@ -2,9 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon --inspect ./index.js",
+    "beutiful": "lint-staged",
+    "start": "nodemon --inspect ./src/index.js",
+    "watch": "node-sass --watch ./src/resources/scss/ -o ./src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,11 +19,26 @@
     "url": "https://github.com/ThanhNguyenDat/nodejs_blog/issues"
   },
   "homepage": "https://github.com/ThanhNguyenDat/nodejs_blog#readme",
+  "lint-staged": {
+    "src/**/*.{js, json, scss, hbs}": [
+      "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.18.1"
   },
   "devDependencies": {
+    "express-handlebars": "^6.0.5",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.16"
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2"
   }
 }
