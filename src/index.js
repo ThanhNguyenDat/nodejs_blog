@@ -1,6 +1,7 @@
 const path = require('path');
-const express = require('express');
+const express = require('express'); 
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
 // import { handlebars } from 'express-handlebars';
 
@@ -30,6 +31,9 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        }
     }),
 );
 

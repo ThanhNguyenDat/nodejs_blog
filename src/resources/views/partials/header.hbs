@@ -1,17 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
+
+  <div class="container">
     <a class="navbar-brand" href="/">DT Nguyen</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/news">News</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/272858595_1763530754038181_7657492639481153746_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=ELU1n4aCZZkAX9MKel4&tn=fzR-70BXe7NH8PmN&_nc_ht=scontent.fsgn5-8.fna&oh=00_AT8C0DlAUupiHeV40RsVncP_q6sgg8zIHzc4kxsrwjUmiA&oe=6275FB02" alt="" class="user-avatar">
+            DT Nguyen
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
+            <a class="dropdown-item" href="/news">News</a>
+            <a class="dropdown-item" href="/search">Search</a>
+            <a class="dropdown-item" href="/books/create">Create</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/me/stored/books">My Books</a>
+            <a class="dropdown-item" href="/me/stored/news">My News</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/search">Search</a>
-        </li>
+      </ul>
     </div>
   </div>
 </nav>

@@ -1,11 +1,14 @@
 @import 'variables';
 
-h1 {
-    color: $red-color;
+.card-book-item {
+    margin-top: 16;
 }
 
-h2 {
-    color: green;
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 4px;
 }
 
 .footer {
