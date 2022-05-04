@@ -1,6 +1,6 @@
 <div class="mt-4">
     <h3>Edit book</h3>
-    <form class="mt-4" method="post" action="/books/{{book._id}}">
+    <form class="mt-4" method="post" action="/books/{{book._id}}?_method=PUT">
         <div class="form-group mt-4">
             <label for="name">Name</label>
             <input type="text" class="form-control" value={{book.name}} id="name" name="name" placeholder="Name">

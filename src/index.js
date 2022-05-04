@@ -24,7 +24,10 @@ app.use(
         extended: true,
     }),
 );
+
 app.use(express.json());
+
+app.use(methodOverride('_method'));
 
 // Template Engine
 app.engine(

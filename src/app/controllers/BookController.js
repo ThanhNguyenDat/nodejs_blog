@@ -3,7 +3,7 @@ const { multipleMongooseToObject, mongooseToObject } = require('../../util/mongo
 
 class BookController {
     
-    // [GET] /book/:slug
+    // [GET] /books/:slug
     show(req, res, next) {
         Book.findOne({ slug: req.params.slug })
             .then(book => {
@@ -14,12 +14,12 @@ class BookController {
         // res.send('Book details');
     }
 
-    // [GET] /book/create
+    // [GET] /books/create
     create(req, res, next) {
         res.render('books/create')
     }
 
-    // [POST] /book/store
+    // [POST] /books/store
     store(req, res, next) {
         // res.json(req.body);
         const formData = req.body;
@@ -31,7 +31,7 @@ class BookController {
         
     }
 
-    // [GET] /book/:id/edit
+    // [GET] /books/:id/edit
     edit(req, res, next) {
         Book.findById(req.params.id)
             .then(book => res.render('books/edit', {
@@ -39,6 +39,13 @@ class BookController {
             }))
             .catch(next);
         
+    }
+    // [PUT] /books/:id
+    update(req, res, next) {
+        Book.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/me/stored/books'))
+            .catch(next);
+        //res.json(req.body);
     }
 
     index(req, res, next) {

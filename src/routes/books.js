@@ -8,6 +8,7 @@ const booksController = require('../app/controllers/BookController');
 route.get('/create', booksController.create);
 route.post('/store', booksController.store);
 route.get('/:id/edit', booksController.edit);
+route.put('/:id', booksController.update);
 route.get('/:slug', booksController.show);
 route.get('/', booksController.index);
 
