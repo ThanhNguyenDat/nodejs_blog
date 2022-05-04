@@ -48,6 +48,13 @@ class BookController {
         //res.json(req.body);
     }
 
+    // [DELETE] /books/:id
+    delete(req, res, next) {
+        Book.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
     index(req, res, next) {
         res.render('home');
     }

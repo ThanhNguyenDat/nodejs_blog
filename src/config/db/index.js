@@ -6,6 +6,7 @@ async function connect() {
         await mongoose.connect('mongodb://localhost:27017/blog_dev', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            //useCreateIndex: true,
         });
         console.log('MongoDB connected');
     }

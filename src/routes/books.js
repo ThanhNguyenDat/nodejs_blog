@@ -9,6 +9,7 @@ route.get('/create', booksController.create);
 route.post('/store', booksController.store);
 route.get('/:id/edit', booksController.edit);
 route.put('/:id', booksController.update);
+route.delete('/:id', booksController.delete);
 route.get('/:slug', booksController.show);
 route.get('/', booksController.index);
 
