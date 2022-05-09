@@ -6,10 +6,23 @@ class MeController {
     
     // [GET] /searcb
     storedBooks(req, res, next) {
-        Book.find({})
-            .then(books =>  res.render('me/stored-books', {
-                books: multipleMongooseToObject(books)
-            }))
+        Promise.all([Book.find({}), Book.countDocuments()])
+            .then(([books, deletedCount]) => 
+                res.render('me/stored-books', {
+                    deletedCount,
+                    books: multipleMongooseToObject(books),
+                }),
+                )
+            .catch(next);
+    }
+
+    trashBooks(req, res, next) {
+        Book.findDeleted({})
+            .then((books) =>  
+                res.render('me/trash-books', {
+                    books: multipleMongooseToObject(books),
+                }),
+            )
             .catch(next);
     }
 }

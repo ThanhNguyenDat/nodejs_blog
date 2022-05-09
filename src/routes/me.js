@@ -6,6 +6,7 @@ const meController = require('../app/controllers/MeController');
 
 // newsController.index
 route.get('/stored/books', meController.storedBooks);
+route.get('/trash/books', meController.trashBooks);
 
 
 module.exports = route;

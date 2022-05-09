@@ -1,7 +1,8 @@
 <div class="mt-4">
     <div>
-      <h3>My Books</h3>
-      <a href="/me/trash/books">Trash {{deletedCount}}</a>
+      <a href="/me/stored/books">List Books</a>
+      <h3>My Books are deketed</h3>
+      
     </div>
     <table class="table mt-4">
         <thead>
@@ -19,15 +20,15 @@
                 <td>{{ this.name }}</td>
                 <td>{{ this.createdAt }}</td>
                 <td> 
-                    <a href="/books/{{ this._id }}/edit" class="btn btn-link">Edit</a>
+                    <a href="" class="btn btn-link btn-restore-book" data-id="{{ this._id }}">Restore</a>
                     <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{ this._id }}" data-bs-target="#delete-book-modal">Delete</a>
                 </td>
             </tr>
             {{else}}
             <tr>
                 <td colspan="3" class="text-center">
-                  No books found
-                  <p><a href="/books/create" >Create new book</a></p>
+                  Trash empty
+                  <p><a href="/me/stored/books" > List my books </a></p>
                 </td>
                 
             {{/each}}
@@ -46,26 +47,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete this book?
+        This action cannot be reversed. Are you sure you want to delete this book?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="btn-delete-book" type="button" class="btn btn-danger">Delete</button>
+        <button id="btn-delete-book" type="button" class="btn btn-danger">Permanently Delete</button>
       </div>
     </div>
   </div>
 </div>
 
-{{!-- Delete hidden form --}}
+  
+  {{!-- End Conform delete book --}}
 <form name="delete-book-form" method="post" ></form>
+<form name="restore-book-form" method="post" ></form>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         
         var bookId;
         var deleteForm = document.forms['delete-book-form']
+        var restoreForm = document.forms['restore-book-form']
         var btnDeleteBook = document.getElementById('btn-delete-book');
-        
+        var btnRestore = document.querySelectorAll('.btn-restore-book');     
 
         // when dialog confirm clicked
         $('#delete-book-modal').on('show.bs.modal', function (event) {
@@ -77,9 +81,21 @@
         // when delete button clicked
         btnDeleteBook.onclick = function() {
           //alert();
-          deleteForm.action = '/books/' + bookId + '?_method=DELETE';
+          deleteForm.action = '/books/' + bookId + '/destroy?_method=DELETE';
           deleteForm.submit();
-        }
+        };
+
+        // when restore button clicked
+        btnRestore.forEach(e => {
+              e.addEventListener('click', (event) => {
+                event.preventDefault();
+                const bookId = e.dataset.id;
+                const restoreForm = document.forms["restore-book-form"];
+                restoreForm.action = `/books/${bookId}/restore?_method=PATCH`
+                restoreForm.submit();
+              })
+        });
+
     });
 
     

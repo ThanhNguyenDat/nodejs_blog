@@ -22,11 +22,11 @@ class BookController {
     // [POST] /books/store
     store(req, res, next) {
         // res.json(req.body);
-        const formData = req.body;
-        formData.image = formData.image || 'https://via.placeholder.com/150';
-        const book = new Book(formData);
+        // const formData = req.body;
+        req.body.image = req.body.image || 'https://via.placeholder.com/150';
+        const book = new Book(req.body);
         book.save()
-            .then(book => { res.redirect('/books/' + book.slug) })
+            .then(book => { res.redirect('/me/stored/books/' + book.slug) })
             .catch(next);
         
     }
@@ -50,6 +50,20 @@ class BookController {
 
     // [DELETE] /books/:id
     delete(req, res, next) {
+        Book.delete({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [PATCH] /books/:id/restore
+    restore(req, res, next) {
+        Book.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [DELETE] /books/:id/destroy
+    destroy(req, res, next) {
         Book.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
